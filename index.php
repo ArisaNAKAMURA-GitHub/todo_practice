@@ -3,9 +3,19 @@
 // ファイルの読み込み
 
 
-// データの取得
+// データ(タスク)の取得
+    // -DBの機能
+    // -SQL（データベースを操作する言語）の実行
+    //     -Read(select)
+    // -結果を変数に代入
+    // →で、取得したデータを画面に表示する
 
+require_once('Models/Task.php');
+require_once('function.php');
 
+$task = new Task();
+$tasks = $task->getAll();
+// var_dump($tasks); ちゃんと出てくるか確認した
 
 ?>
 <!DOCTYPE html>
@@ -53,13 +63,16 @@
         </div>
 
         <div class="row p-3">
+            <?php foreach ($tasks as $task) : ?>
             <div class="col-sm-6 col-md-4 col-lg-3 py-3 py-3">
                 <div class="card">
                     <img src="https://picsum.photos/200" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">ここにタイトル</h5>
+                        <h5 class="card-title">
+                            <?= h($task['title']); ?>
+                        </h5>
                         <p class="card-text">
-                            ここに詳細
+                            <?= h($task['contents']); ?>
                         </p>
                         <div class="text-right d-flex justify-content-end">
                             <!-- * href内を変更する -->
@@ -73,6 +86,7 @@
                     </div>
                 </div>
             </div>
+            <?php endforeach; ?>
         </div>
     </div>
 
