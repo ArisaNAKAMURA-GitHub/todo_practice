@@ -1,6 +1,5 @@
 <?php 
 // deleteの処理内容を以下に書く
-
 // 1. ファイルの読み込み
 require_once('Models/Task.php');
 
